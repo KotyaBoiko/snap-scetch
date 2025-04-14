@@ -1,9 +1,9 @@
+import AboutPage from "@/pages/AboutPage";
+import GalleryPage from "@/pages/GalleryPage";
+import HomePage from "@/pages/HomePage";
+import TrainingPage from "@/pages/TrainingPage";
 import { BrowserRouter, Route, Routes } from "react-router";
-import Layout from "../layout/Layout";
-import TrainingPage from "../pages/TrainingPage";
-import HomePage from "../pages/HomePage";
-import GalleryPage from "../pages/GalleryPage";
-import AboutPage from "../pages/AboutPage";
+import Layout from "../layout";
 import { COMMON_ROUTES_NAMES } from "./commonRoutesNames";
 
 const AppRouter = () => {

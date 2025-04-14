@@ -1,1 +1,61 @@
 @import "tailwindcss";
+
+@theme {
+  --color-main-black: #000;
+  --color-main-red: #bf2f1f;
+  --color-darker-red: #b02718;
+  --color-main-beige: #f8f1e6;
+  --color-main-gray: #4a4845;
+  --font-pixel: "Pixelify Sans", sans-serif;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.wrapper {
+  @apply px-7;
+}
+
+.global-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.link {
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transform: scaleX(0);
+    height: 0.0938rem;
+    background-color: var(--color-main-black);
+    transition: all 0.3s ease-in;
+  }
+}
+.link:hover::after {
+  transform: scaleX(1);
+}
+.link-active {
+  &::after {
+    transform: scaleX(1);
+  }
+}
+.link-light {
+  &::after {
+    background-color: var(--color-main-beige);
+  }
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+}

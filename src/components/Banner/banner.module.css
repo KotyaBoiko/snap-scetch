@@ -1,0 +1,116 @@
+.banner-img {
+  height: auto;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease-out;
+}
+
+.banner-img-0,
+.banner-img-2,
+.banner-img-5,
+.banner-img-6,
+.banner-img-7 {
+  width: 150px;
+}
+
+.banner-img-0 {
+  top: -10%;
+  left: 10%;
+}
+
+.banner-img-1 {
+  top: 12%;
+  left: 25%;
+}
+
+.banner-img-2 {
+  top: 5%;
+  left: 54%;
+}
+
+.banner-img-3 {
+  top: 1%;
+  right: 16%;
+}
+
+.banner-img-4 {
+  top: 38%;
+  left: 5%;
+}
+
+.banner-img-5 {
+  bottom: 4%;
+  left: 3%;
+}
+
+.banner-img-6 {
+  bottom: -2%;
+  left: 24%;
+}
+
+.banner-img-7 {
+  bottom: 1%;
+  right: 43%;
+}
+
+.banner-img-8 {
+  bottom: 15%;
+  right: 20%;
+}
+
+.banner-img-9 {
+  top: 34%;
+  right: 3%;
+}
+.banner-img-10 {
+  bottom: -3%;
+  right: -2%;
+}
+.banner-img-11 {
+  top: 9%;
+  left: -9%;
+}
+.banner-img-12 {
+  top: -15%;
+  right: -8%;
+}
+.banner-img-13 {
+  top: -20%;
+  left: 35%;
+}
+.banner-img-14 {
+  bottom: 35%;
+  left: 30%;
+}
+
+/* Анімація для зображень (опціонально) */
+.absolute {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .banner-img-0,
+  .banner-img-1,
+  .banner-img-2,
+  .banner-img-3,
+  .banner-img-4,
+  .banner-img-5,
+  .banner-img-6,
+  .banner-img-7,
+  .banner-img-8,
+  .banner-img-9 {
+    display: none; /* Приховуємо зображення на малих екранах */
+  }
+}
