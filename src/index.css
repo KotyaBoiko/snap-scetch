@@ -14,7 +14,7 @@ body {
 }
 
 .wrapper {
-  @apply px-7;
+  @apply px-7 h-full w-full;
 }
 
 .global-wrapper {

@@ -46,30 +46,27 @@ const Banner = () => {
 
     const maxOffset = 20;
 
-    document.querySelectorAll(".home-banner-parallax").forEach((img, index) => {
-      const speedX = (index % 2 === 0 ? 0.02 : 0.02) * (index + 1);
-      const speedY = (index % 2 === 0 ? 0.01 : 0.01) * (index + 1);
-
+    document.querySelectorAll(".home-banner-parallax").forEach((img) => {
       const offsetX = mouseX * 0.1;
       const offsetY = mouseY * 0.1;
 
       const boundedOffsetX = Math.min(Math.max(offsetX, -maxOffset), maxOffset);
       const boundedOffsetY = Math.min(Math.max(offsetY, -maxOffset), maxOffset);
 
-      img.style.transform = `translate(${boundedOffsetX}px, ${boundedOffsetY}px)`;
+      (img as HTMLElement).style.transform = `translate(${boundedOffsetX}px, ${boundedOffsetY}px)`;
     });
   };
 
   const handleMouseLeave = () => {
     document.querySelectorAll(".home-banner-parallax").forEach((img) => {
-      img.style.transform = `translate(0px, 0px)`;
+      (img as HTMLElement).style.transform = `translate(0px, 0px)`;
     });
   };
 
   return (
-    <div>
+    <div className="min-h-[100vh] overflow-hidden">
       <div
-        className="relative w-full h-[100vh] overflow-hidden mt-[-100px] flex items-center justify-center"
+        className="fixed w-full h-full mt-[-100px] flex items-center justify-center"
         ref={bannerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
