@@ -1,4 +1,4 @@
-import TitleInfoCard from "@/components/TitleInfoCard";
+import TitleInfoCard from "@/components/Cards/TitleInfoCard";
 
 import PaleteIcon from "@/app/assets/icons/palete.svg?react";
 import PaperPlaneIcon from "@/app/assets/icons/paperplane.svg?react";

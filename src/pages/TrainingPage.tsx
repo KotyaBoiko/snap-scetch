@@ -1,6 +1,8 @@
+import CategoryList from "@/features/categories/components/CategoryList"
+
 const TrainingPage = () => {
   return (
-    <div>Training</div>
+    <CategoryList/>
   )
 }
 

@@ -1,3 +1,4 @@
+import CategoryList from "@/features/categories/components/CategoryList";
 import AboutUsBanner from "@/features/home/components/AboutUsBanner";
 import Banner from "@/features/home/components/Banner/Banner";
 import ForWhom from "@/features/home/components/ForWhom";
@@ -11,6 +12,7 @@ const HomePage = () => {
         <AboutUsBanner/>
         <WhyUs/>
         <ForWhom/>
+        <CategoryList max={4} title="MOST POPULAR CATEGORIES"/>
       </div>
     </div>
   );

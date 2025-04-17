@@ -1,5 +1,3 @@
-import React from 'react'
-
 import img from '@/app/assets/images/europeana-84R6ipsqaxo-unsplash.jpg'
 
 const ForWhom = () => {
