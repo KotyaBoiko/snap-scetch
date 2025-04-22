@@ -1,10 +1,10 @@
-import BgImgCard from "@/components/Cards/BgImgCard";
 import GridLayout from "@/components/GridLayout";
 
-import Pointer from "@/components/ui/Pointer";
+import PointerTitle from "@/components/ui/PointerTitle";
 import { useQuery } from "@tanstack/react-query";
 import { FC } from "react";
 import { categoriesApi } from "../API";
+import CategoryCard from "./CategoryCard";
 
 type Props = {
   max?: number;
@@ -26,19 +26,11 @@ const CategoryList: FC<Props> = ({ max = 12, title = "CHOOSE CATEGORY" }) => {
   return (
     <section className="py-5">
       <div className="wrapper">
-        <div className="flex gap-3 items-center mb-10">
-          <Pointer />
-          <h1 className="text-7xl font-semibold">{title}</h1>
-        </div>
+        <PointerTitle title={title} />
         <GridLayout cols={4} gap={4}>
           {data.map((category, index) => (
             index < max && ( 
-            <BgImgCard
-              key={category.id}
-              title={category.name}
-              info={category.description.slice(0, 20) + "..."}
-              img={category.img}
-            />
+              <CategoryCard category={category} key={category.id}/>
             )
           ))}
         </GridLayout>

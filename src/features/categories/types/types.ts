@@ -4,4 +4,10 @@ export interface ICategory {
   description: string;
   img: string;
   createdAt: Date;
+  filters: ICategoryFilters[];
+}
+
+export interface ICategoryFilters {
+  name: string;
+  options: string[];
 }

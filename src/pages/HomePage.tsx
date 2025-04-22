@@ -12,7 +12,7 @@ const HomePage = () => {
         <AboutUsBanner/>
         <WhyUs/>
         <ForWhom/>
-        <CategoryList max={4} title="MOST POPULAR CATEGORIES"/>
+        <CategoryList max={4} title="TRY IT NOW"/>
       </div>
     </div>
   );

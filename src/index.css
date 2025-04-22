@@ -3,10 +3,14 @@
 @theme {
   --color-main-black: #000;
   --color-main-red: #bf2f1f;
-  --color-darker-red: #b02718;
+  --color-darker-red: #9e2c20;
   --color-main-beige: #f8f1e6;
   --color-main-gray: #4a4845;
   --font-pixel: "Pixelify Sans", sans-serif;
+  --shadow-main: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1),
+    0 0.125rem 0.5rem rgba(0, 0, 0, 0.1),
+    0 0.125rem 1rem rgba(0, 0, 0, 0.1),
+    inset 0 -2px 2px rgba(255, 255, 255, 0.1);
 }
 
 body {

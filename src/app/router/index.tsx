@@ -5,6 +5,7 @@ import TrainingPage from "@/pages/TrainingPage";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Layout from "../layout";
 import { COMMON_ROUTES_NAMES } from "./commonRoutesNames";
+import FiltersPage from "@/pages/FiltersPage";
 
 const AppRouter = () => {
   return (
@@ -12,7 +13,14 @@ const AppRouter = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path={COMMON_ROUTES_NAMES.Home} element={<HomePage />} />
-          <Route path={COMMON_ROUTES_NAMES.Training} element={<TrainingPage />} />
+          <Route
+            path={COMMON_ROUTES_NAMES.Training}
+            element={<TrainingPage />}
+          />
+          <Route
+            path={COMMON_ROUTES_NAMES.Category}
+            element={<FiltersPage />}
+          />
           <Route path={COMMON_ROUTES_NAMES.Gallery} element={<GalleryPage />} />
           <Route path={COMMON_ROUTES_NAMES.About} element={<AboutPage />} />
         </Route>
