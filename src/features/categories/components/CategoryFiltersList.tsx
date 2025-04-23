@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useParams } from "react-router";
 import { categoriesApi } from "../API";
 import { ICategoryFilters } from "../types/types";
+import IsolatedBlock from "@/components/IsolateBlock";
 
 const CategoryFiltersList = () => {
   const { categoryName } = useParams();
@@ -97,10 +98,7 @@ const CategoryFiltersList = () => {
   };
 
   return (
-    <div className="py-10">
-      <PointerTitle title="CUSTOMIZE FILTERS" />
-      <div className="p-5 shadow-main rounded-xl">
-        <div className="flex flex-col gap-4">
+      <IsolatedBlock className="flex flex-col gap-4">
           {data.filters.map((filter) => {
             return (
               <div key={filter.name}>
@@ -141,9 +139,7 @@ const CategoryFiltersList = () => {
               </div>
             );
           })}
-        </div>
-      </div>
-    </div>
+      </IsolatedBlock>
   );
 };
 

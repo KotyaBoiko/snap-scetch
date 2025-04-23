@@ -1,0 +1,26 @@
+
+.radio {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-main-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.radio::after {
+  transition: all 0.2s;
+  content: '';
+  display: block;
+  height: 8px;
+  width: 8px;
+}
+.radio:checked:after {
+  background-color: var(--color-main-red);
+}
+.radio:hover {
+  border: 1px solid var(--color-main-red);
+  box-shadow: 0 0 15px var(--color-main-red);
+}
