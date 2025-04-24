@@ -21,6 +21,5 @@
   background-color: var(--color-main-red);
 }
 .radio:hover {
-  border: 1px solid var(--color-main-red);
-  box-shadow: 0 0 15px var(--color-main-red);
+  transform: scale(1.2);
 }

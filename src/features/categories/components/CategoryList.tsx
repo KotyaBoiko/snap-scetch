@@ -26,7 +26,7 @@ const CategoryList: FC<Props> = ({ max = 12, title = "CHOOSE CATEGORY" }) => {
   return (
     <section className="py-5">
       <div className="wrapper">
-        <PointerTitle title={title} />
+        <PointerTitle title={title} className="mb-5"/>
         <GridLayout cols={4} gap={4}>
           {data.map((category, index) => (
             index < max && ( 
