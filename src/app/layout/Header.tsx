@@ -1,6 +1,6 @@
 import Logo from "@/components/ui/Logo";
 import Navigation from "@/components/Navigation";
-import MainButton from "@/components/ui/MainButton";
+import MainButton from "@/components/ui/Buttons/MainButton";
 
 
 const Header = () => {

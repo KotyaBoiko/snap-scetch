@@ -1,6 +1,7 @@
 import React, { FC, SetStateAction, useEffect, useRef, useState } from "react";
 import classes from "./select.module.css";
 import SimpleInput from "../SimpleInput";
+import ArrowIcon from "@/app/assets/icons/arrow.svg?react";
 
 type Props = {
   data: string[];
@@ -46,13 +47,25 @@ const SimpleSelect: FC<Props> = ({
       className={"cursor-pointer relative z-100 w-fit " + className}
       ref={dropdownRef}
     >
-      <SimpleInput
-        value={data[activeElementIndex || 0]}
-        readOnly
-        onClick={() => {
-          setIsOpenList((p) => !p);
-        }}
-      />
+      <div className="relative">
+        <SimpleInput
+          value={data[activeElementIndex || 0]}
+          readOnly
+          onClick={() => {
+            setIsOpenList((p) => !p);
+          }}
+          className="pr-7 cursor-pointer"
+        />
+        <ArrowIcon
+          onClick={() => {
+            setIsOpenList((p) => !p);
+          }}
+          className={
+            "stroke-main-black absolute top-2.5 right-2 transition-transform " +
+            (isOpenList ? "rotate-90" : "")
+          }
+        />
+      </div>
       <ul
         className={
           "w-full hidden absolute bottom-[-5px] rounded-md bg-main-beige border border-main-black transition-all " +
@@ -62,7 +75,7 @@ const SimpleSelect: FC<Props> = ({
         {data.map((item, index) => {
           return (
             <li
-              className='py-2.5 px-1.5 border-b last:border-none border-main-black transition-colors hover:text-main-black/50'
+              className="py-2.5 px-1.5 border-b last:border-none border-main-black transition-colors hover:text-main-black/50"
               key={index}
               onClick={() => {
                 setIsOpenList(false);
