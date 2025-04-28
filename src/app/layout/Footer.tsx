@@ -4,7 +4,7 @@ import Socials from "@/components/Socials";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-main-beige relative z-50">
+    <footer className="bg-black text-main-beige relative z-40">
       <div className="wrapper">
         <div className="flex flex-row justify-between items-center text-lg font-semibold h-[100px]">
           <Logo />

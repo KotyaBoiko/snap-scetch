@@ -14,7 +14,7 @@ const timeIntervals = [
 
 const types:['minutes', 'seconds'] = ['minutes', 'seconds']
 
-const selectIntervalInterval = () => {
+const SelectTimeInterval = () => {
   const [selectInterval, setSelectInterval] = useState(0);
   const [time, setTime] = useState(1000 * 60 * 5); // 5 minutes
   const [type, setType] = useState(0);
@@ -51,4 +51,4 @@ const selectIntervalInterval = () => {
   );
 };
 
-export default selectIntervalInterval;
+export default SelectTimeInterval;
