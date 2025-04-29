@@ -7,7 +7,7 @@ import SelectTimeInterval from "@/features/timer/components/SelectTimeInterval";
 import { useState } from "react";
 
 const FiltersPage = () => {
-  const [isSessionActive, setIsSessionActive] = useState(true);
+  const [isSessionActive, setIsSessionActive] = useState(false);
 
   return isSessionActive ? (
     <DrawSession setIsActive={setIsSessionActive} />

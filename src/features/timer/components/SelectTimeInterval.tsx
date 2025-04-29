@@ -1,7 +1,8 @@
 import SimpleSelect from "@/components/ui/Select/SimpleSelect";
 import SimpleInput from "@/components/ui/SimpleInput";
 import SimpleRadioInput from "@/components/ui/SimpleRadioInput/SimpleRadioInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTimerStore } from "../store/timerStore";
 
 const timeIntervals = [
   { text: "30 seconds", value: 1000 * 30 }, // 30 seconds
@@ -12,12 +13,34 @@ const timeIntervals = [
   { text: "Custom", value: 1000 * 60 * 15 }, // 15 minutes
 ];
 
-const types:['minutes', 'seconds'] = ['minutes', 'seconds']
+const types: ["minutes", "seconds"] = ["minutes", "seconds"];
 
 const SelectTimeInterval = () => {
+  const setTimeInterval = useTimerStore((state) => state.setTimeInterval);
+
   const [selectInterval, setSelectInterval] = useState(0);
-  const [time, setTime] = useState(1000 * 60 * 5); // 5 minutes
+  const [time, setTime] = useState(15);
   const [type, setType] = useState(0);
+  const [invalidTime, setInvalidTime] = useState(false);
+
+  useEffect(() => {
+    if (selectInterval !== 5) {
+      setTimeInterval(timeIntervals[selectInterval].value);
+      return;
+    }
+    if (isNaN(time) || (type === 1 && time < 5) || time < 1) {
+      setInvalidTime(true);
+      return;
+    } else {
+      setInvalidTime(false);
+    }
+    if (type === 0) {
+      setTimeInterval(time * 1000 * 60);
+    } else {
+      setTimeInterval(time * 1000);
+    }
+  }, [selectInterval, time, type]);
+
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="flex gap-4">
@@ -29,23 +52,36 @@ const SelectTimeInterval = () => {
             checked={selectInterval === index}
             onChange={() => {
               setSelectInterval(index);
-              setTime(item.value);
             }}
           />
         ))}
       </div>
       {selectInterval === 5 && (
-        <div className="flex gap-3 items-center mt-4">
-          <SimpleInput
-            type="number"
-            value={time / 1000 / 60}
-            onChange={(e) => {
-              const value = parseInt(e.target.value) * 1000 * 60;
-              setTime(value);
-            }}
-          />
-          <SimpleSelect data={types} activeElementIndex={type} onChoose={setType}/>
+        <>
+          <div className="flex gap-3 items-center mt-4">
+            <SimpleInput
+              autofocus={true}
+              type="number"
+              value={time}
+              onClick={(e) => {
+                e.currentTarget.select();
+              }}
+              onChange={(e) => {
+                setTime(parseInt(e.target.value));
+              }}
+            />
+            <SimpleSelect
+              data={types}
+              activeElementIndex={type}
+              onChoose={setType}
+            />
           </div>
+          {invalidTime && (
+            <p className="text-red-500 text-sm mt-1">
+              Please enter a valid time. Time must be at least 5 seconds.
+            </p>
+          )}
+        </>
       )}
     </form>
   );

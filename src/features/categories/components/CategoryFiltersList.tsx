@@ -1,27 +1,28 @@
 import SelectButton from "@/components/ui/Buttons/SelectButton";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import { categoriesApi } from "../API";
-import { ICategoryFilters } from "../types/types";
 import { useCategoryFilterStore } from "../store/categoryFiltersStore";
 
 const CategoryFiltersList = () => {
   const { categoryName } = useParams();
+  const category = useCategoryFilterStore((state) => state.category);
+  const setCategory = useCategoryFilterStore((state) => state.setCategory);
+  const filters = useCategoryFilterStore(state => state.filters)
   const setFilters = useCategoryFilterStore(state => state.setFilters)
   const { data, isLoading, isSuccess } = useQuery({
     queryKey: ["category", categoryName],
     queryFn: () => categoriesApi.getCategoryByName(categoryName as string),
   });
 
-  const [selectedFilters, setSelectedFilters] = useState<ICategoryFilters[]>(
-    []
-  );
-
   useEffect(() => {
-    setFilters(selectedFilters);
-  }, [selectedFilters]);
-
+    if(isSuccess && category !== data.id) {
+      setFilters([]);
+      setCategory(data.id)
+    }
+  }, [data])
+  
   if (isLoading) {
     return (
       <div className="h-96 w-full flex justify-center items-center">
@@ -39,30 +40,30 @@ const CategoryFiltersList = () => {
 
 
   const handleClearFilter = (filterName: string) => {
-    setSelectedFilters((prev) => {
+    setFilters((prev) => {
       return prev.filter((filter) => filter.name !== filterName);
     });
   };
 
   const handleToggleFilter = (filterName: string, option: string) => {
-    const isFilterSelected = selectedFilters.findIndex(
+    const isFilterSelected = filters.findIndex(
       (filter) => filter.name === filterName
     );
 
     if (isFilterSelected !== -1) {
       const isOptionSelected =
-        selectedFilters[isFilterSelected].options.findIndex(
+        filters[isFilterSelected].options.findIndex(
           (opt) => opt === option
         ) !== -1;
 
       if (isOptionSelected) {
         //delete filter if last options
-        if(selectedFilters[isFilterSelected].options.length === 1) {
+        if(filters[isFilterSelected].options.length === 1) {
           handleClearFilter(filterName);
           return
         }
         //Delete option
-        setSelectedFilters((prev) => {
+        setFilters((prev) => {
           return prev.map((filter) => {
             if (filter.name === filterName) {
               return {
@@ -80,7 +81,7 @@ const CategoryFiltersList = () => {
       if (!isOptionSelected) {
         //delete filter if all options are selected
         if (
-          selectedFilters[isFilterSelected].options.length + 1 ===
+          filters[isFilterSelected].options.length + 1 ===
           data.filters.find((f) => f.name === filterName)?.options.length
         ) {
           handleClearFilter(filterName);
@@ -88,7 +89,7 @@ const CategoryFiltersList = () => {
         }
 
         //Add option
-        setSelectedFilters((prev) => {
+        setFilters((prev) => {
           return prev.map((filter) =>
             filter.name === filterName
               ? { ...filter, options: [...filter.options, option] }
@@ -101,7 +102,7 @@ const CategoryFiltersList = () => {
 
     if (isFilterSelected === -1) {
       //Add option to new filter
-      setSelectedFilters((prev) => {
+      setFilters((prev) => {
         return [...prev, { name: filterName, options: [option] }];
       });
     }
@@ -116,7 +117,7 @@ const CategoryFiltersList = () => {
             <div className="flex gap-4">
               <SelectButton
                 onClick={() => handleClearFilter(filter.name)}
-                active={!selectedFilters.find((f) => f.name === filter.name)}
+                active={!filters.find((f) => f.name === filter.name)}
               >
                 All
               </SelectButton>
@@ -126,7 +127,7 @@ const CategoryFiltersList = () => {
                     key={index}
                     onClick={() => handleToggleFilter(filter.name, option)}
                     active={
-                      !!selectedFilters.find(
+                      !!filters.find(
                         (f) =>
                           f.name === filter.name && f.options.includes(option)
                       )

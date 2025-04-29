@@ -8,6 +8,9 @@ type Props = {
   className?: string;
   readOnly?: boolean;
   onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+  autofocus?: boolean;
+  min?: number;
+  max?: number;
 };
 
 const SimpleInput: FC<Props> = ({
@@ -18,9 +21,15 @@ const SimpleInput: FC<Props> = ({
   className,
   readOnly = false,
   onClick,
+  autofocus = false,
+  min,
+  max,
 }) => {
   return (
     <input
+      min={min}
+      max={max}
+      autoFocus={autofocus}
       type={type}
       value={value}
       onChange={onChange}
