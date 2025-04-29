@@ -1,7 +1,7 @@
 import { supabase } from "@/app/supabase/supabaseConfig";
+import { ICategoryFilters } from "@/features/categories/types/types";
 import { IImages } from "../types/types";
 import { getFiltersJSON } from "../utils/getFiltersJSON";
-import { ICategoryFilters } from "@/features/categories/types/types";
 
 export const getImagesByFilters = async (filters: ICategoryFilters[], category: string) => {
   const response = await supabase
