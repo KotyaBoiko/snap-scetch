@@ -3,7 +3,7 @@ import GridLayout from "@/components/GridLayout";
 import PointerTitle from "@/components/ui/PointerTitle";
 import { useQuery } from "@tanstack/react-query";
 import { FC } from "react";
-import { categoriesApi } from "../API";
+import { sessionApi } from "../API";
 import CategoryCard from "./CategoryCard";
 
 type Props = {
@@ -14,7 +14,7 @@ const CategoryList: FC<Props> = ({ max = 12, title = "CHOOSE CATEGORY" }) => {
 
   const {data, isLoading, isSuccess} = useQuery({
     queryKey: ["categories"],
-    queryFn: () => categoriesApi.getCategories(),
+    queryFn: () => sessionApi.getCategories(),
   })
 
   if(isLoading) {

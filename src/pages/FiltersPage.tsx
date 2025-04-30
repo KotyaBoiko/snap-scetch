@@ -1,7 +1,7 @@
 import IsolatedBlock from "@/components/IsolateBlock";
 import MainButton from "@/components/ui/Buttons/MainButton";
 import PointerTitle from "@/components/ui/PointerTitle";
-import CategoryFiltersList from "@/features/categories/components/CategoryFiltersList";
+import CategoryFiltersList from "@/features/session/components/CategoryFiltersList";
 import DrawSession from "@/features/session/components/DrawSession";
 import SelectTimeInterval from "@/features/timer/components/SelectTimeInterval";
 import { useState } from "react";

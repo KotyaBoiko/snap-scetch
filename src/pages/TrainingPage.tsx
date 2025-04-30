@@ -1,4 +1,4 @@
-import CategoryList from "@/features/categories/components/CategoryList"
+import CategoryList from "@/features/session/components/CategoryList"
 
 const TrainingPage = () => {
   return (

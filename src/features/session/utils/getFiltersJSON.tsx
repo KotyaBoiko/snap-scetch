@@ -1,4 +1,4 @@
-import { ICategoryFilters } from "@/features/categories/types/types";
+import { ICategoryFilters } from "@/features/session/types/types";
 
 export const getFiltersJSON = (filters: ICategoryFilters[]) => {
   if (filters.length === 0) {

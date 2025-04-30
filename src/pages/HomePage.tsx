@@ -1,4 +1,4 @@
-import CategoryList from "@/features/categories/components/CategoryList";
+import CategoryList from "@/features/session/components/CategoryList";
 import AboutUsBanner from "@/features/home/components/AboutUsBanner";
 import Banner from "@/features/home/components/Banner/Banner";
 import ForWhom from "@/features/home/components/ForWhom";

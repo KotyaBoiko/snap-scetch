@@ -2,7 +2,7 @@ import TitleInfoCard from "@/components/Cards/TitleInfoCard";
 
 import PaleteIcon from "@/app/assets/icons/palete.svg?react";
 import PaperPlaneIcon from "@/app/assets/icons/paperplane.svg?react";
-import TimeForwardIcon from "@/app/assets/icons/timeforward.svg?react";
+import TimeForwardIcon from "@/app/assets/icons/reset.svg?react";
 
 const cardsInfo = [
   {

@@ -2,7 +2,7 @@ import SelectButton from "@/components/ui/Buttons/SelectButton";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import { categoriesApi } from "../API";
+import { sessionApi } from "../API";
 import { useCategoryFilterStore } from "../store/categoryFiltersStore";
 
 const CategoryFiltersList = () => {
@@ -13,7 +13,7 @@ const CategoryFiltersList = () => {
   const setFilters = useCategoryFilterStore(state => state.setFilters)
   const { data, isLoading, isSuccess } = useQuery({
     queryKey: ["category", categoryName],
-    queryFn: () => categoriesApi.getCategoryByName(categoryName as string),
+    queryFn: () => sessionApi.getCategoryByName(categoryName as string),
   });
 
   useEffect(() => {

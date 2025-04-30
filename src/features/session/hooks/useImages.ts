@@ -1,4 +1,4 @@
-import { useCategoryFilterStore } from "@/features/categories/store/categoryFiltersStore";
+import { useCategoryFilterStore } from "@/features/session/store/categoryFiltersStore";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { sessionApi } from "../API";
