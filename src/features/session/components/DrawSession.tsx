@@ -11,7 +11,7 @@ type Props = {
 };
 
 const DrawSession: FC<Props> = ({ setIsActive }) => {
-  const { data, isLoading, isSuccess, nextImage, prevImage, activeImage } =
+  const { data, nextImage, prevImage, activeImage } =
     useImages();
 
   const isRunning = useTimerStore((state) => state.isRunning);
@@ -19,30 +19,6 @@ const DrawSession: FC<Props> = ({ setIsActive }) => {
   const reset = useTimerStore(state => state.reset)
 
   const [isShowMenu, setIsShowMenu] = useState(true);
-
-  if (isLoading) {
-    return (
-      <div className="h-96 w-full flex justify-center items-center">
-        Loading...
-      </div>
-    );
-  }
-
-  if (!isSuccess) {
-    return (
-      <div className="h-96 w-full flex justify-center items-center">
-        Something went wrong...
-      </div>
-    );
-  }
-
-  if (data!.length === 0) {
-    return (
-      <div className="h-96 w-full flex justify-center items-center">
-        No images found
-      </div>
-    );
-  }
 
   const handleSwitchImage = (switcher: () => void) => {
     reset()

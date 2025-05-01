@@ -5,22 +5,35 @@ import { useEffect, useState } from "react";
 import { useTimerStore } from "../store/timerStore";
 
 const timeIntervals = [
-  { text: "30 seconds", value: 1000 * 30 }, // 30 seconds
-  { text: "60 seconds", value: 1000 * 60 }, // 1 minute
-  { text: "2 minutes", value: 1000 * 60 * 2 }, // 2 minutes
-  { text: "5 minutes", value: 1000 * 60 * 5 }, // 5 minutes
-  { text: "10 minutes", value: 1000 * 60 * 10 }, // 10 minutes
-  { text: "Custom", value: 1000 * 60 * 15 }, // 15 minutes
+  { id: 0, text: "30 seconds", value: 1000 * 30 }, // 30 seconds
+  { id: 1, text: "60 seconds", value: 1000 * 60 }, // 1 minute
+  { id: 2, text: "2 minutes", value: 1000 * 60 * 2 }, // 2 minutes
+  { id: 3, text: "5 minutes", value: 1000 * 60 * 5 }, // 5 minutes
+  { id: 4, text: "10 minutes", value: 1000 * 60 * 10 }, // 10 minutes
+  { id: 5, text: "Custom", value: 1000 * 60 * 15 }, // 15 minutes
 ];
 
 const types: ["minutes", "seconds"] = ["minutes", "seconds"];
+let typeExternal = 0;
 
 const SelectTimeInterval = () => {
   const setTimeInterval = useTimerStore((state) => state.setTimeInterval);
+  const timerInterval = useTimerStore((state) => state.timerInterval);
 
-  const [selectInterval, setSelectInterval] = useState(0);
-  const [time, setTime] = useState(15);
-  const [type, setType] = useState(0);
+  const [selectInterval, setSelectInterval] = useState(() => {
+    const startInterval = timeIntervals.find((interval) =>
+      interval.value === timerInterval ? true : false
+    );
+    if (startInterval) {
+      return startInterval.id;
+    } else {
+      return 5;
+    }
+  });
+  const [type, setType] = useState(typeExternal);
+  const [time, setTime] = useState(
+    typeExternal === 0 ? timerInterval / 1000 / 60 : timerInterval / 1000
+  );
   const [invalidTime, setInvalidTime] = useState(false);
 
   useEffect(() => {
@@ -39,6 +52,10 @@ const SelectTimeInterval = () => {
     } else {
       setTimeInterval(time * 1000);
     }
+
+    return () => {
+      typeExternal = type;
+    };
   }, [selectInterval, time, type]);
 
   return (
@@ -63,9 +80,6 @@ const SelectTimeInterval = () => {
               autofocus={true}
               type="number"
               value={time}
-              onClick={(e) => {
-                e.currentTarget.select();
-              }}
               onChange={(e) => {
                 setTime(parseInt(e.target.value));
               }}

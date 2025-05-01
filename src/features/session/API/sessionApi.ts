@@ -20,11 +20,21 @@ export const getCategoryByName = async (name: string) => {
 }
 
 export const getImagesByFilters = async (filters: ICategoryFilters[], category: string) => {
-  const response = await supabase
+
+  const query = supabase
     .from("images")
-    .select("*")
+    .select()
     .eq("category", category)
-    .or(getFiltersJSON(filters));
+    
+    if(filters.length > 0) {
+      const filtersJSON = getFiltersJSON(filters);
+      filtersJSON.forEach(element => {
+        query.or(element);
+      });
+    }
+
+  const response = await query;
+
   if (response.error) {
     throw new Error(response.error.message);
   } else {

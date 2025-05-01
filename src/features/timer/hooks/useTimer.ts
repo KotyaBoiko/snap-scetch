@@ -2,23 +2,26 @@ import { useEffect, useRef } from "react";
 import { useTimerStore } from "../store/timerStore";
 
 export const useTimer = (onFinish: () => void) => {
-  const { time, setTime, setIsRunning, isRunning } = useTimerStore((state) => state);
+  const { time, setTime, setIsRunning, isRunning } =
+    useTimerStore((state) => state);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
-    if (!isRunning || time <= 0) {
+    if (!isRunning) {
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
       }
-      if (time <= 0) {
-        onFinish();
-        setIsRunning(false);
-      }
       return;
     }
-
     timerRef.current = setInterval(() => {
-      setTime(time - 1000);
+      setTime((p) => {
+        if (p <= 0) {
+          onFinish();
+          setIsRunning(false);
+          return 0;
+        }
+        return p - 1000;
+      });
     }, 1000);
 
     return () => {
@@ -26,7 +29,7 @@ export const useTimer = (onFinish: () => void) => {
         clearInterval(timerRef.current);
       }
     };
-  }, [isRunning, time]);
+  }, [isRunning]);
 
   const minutes = Math.floor(time / 1000 / 60);
   const seconds = Math.floor((time % 60000) / 1000);
