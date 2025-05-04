@@ -5,8 +5,8 @@ import { Link, useLocation } from "react-router";
 const menu = [
   { name: "Home", path: COMMON_ROUTES_NAMES.Home },
   { name: "Training", path: COMMON_ROUTES_NAMES.Training },
-  { name: "Gallery", path: COMMON_ROUTES_NAMES.Gallery },
   { name: "About", path: COMMON_ROUTES_NAMES.About },
+  { name: "Contacts", path: COMMON_ROUTES_NAMES.Contacts },
 ];
 
 type Props = {

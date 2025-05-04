@@ -1,11 +1,11 @@
 import AboutPage from "@/pages/AboutPage";
-import GalleryPage from "@/pages/GalleryPage";
+import ContactsPage from "@/pages/ContactsPage";
+import FiltersPage from "@/pages/FiltersPage";
 import HomePage from "@/pages/HomePage";
 import TrainingPage from "@/pages/TrainingPage";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Layout from "../layout";
 import { COMMON_ROUTES_NAMES } from "./commonRoutesNames";
-import FiltersPage from "@/pages/FiltersPage";
 
 const AppRouter = () => {
   return (
@@ -21,7 +21,7 @@ const AppRouter = () => {
             path={COMMON_ROUTES_NAMES.Category}
             element={<FiltersPage />}
           />
-          <Route path={COMMON_ROUTES_NAMES.Gallery} element={<GalleryPage />} />
+          <Route path={COMMON_ROUTES_NAMES.Contacts} element={<ContactsPage />} />
           <Route path={COMMON_ROUTES_NAMES.About} element={<AboutPage />} />
         </Route>
       </Routes>
