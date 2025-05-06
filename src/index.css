@@ -8,9 +8,10 @@
   --color-main-gray: #4a4845;
   --font-pixel: "Pixelify Sans", sans-serif;
   --shadow-main: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1),
-    0 0.125rem 0.5rem rgba(0, 0, 0, 0.1),
-    0 0.125rem 1rem rgba(0, 0, 0, 0.1),
+    0 0.125rem 0.5rem rgba(0, 0, 0, 0.1), 0 0.125rem 1rem rgba(0, 0, 0, 0.1),
     inset 0 -2px 2px rgba(255, 255, 255, 0.1);
+
+  --breakpoint-xs: 30rem;
 }
 
 body {
@@ -62,4 +63,22 @@ body {
 .icon {
   width: 35px;
   height: 35px;
+}
+.icon-lg {
+  width: 40px;
+  height: 40px;
+}
+
+
+@media (min-width: 768px) {
+  .icon-lg {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (min-width: 1024px) {
+  .icon-lg {
+    width: 60px;
+    height: 60px;
+  }
 }

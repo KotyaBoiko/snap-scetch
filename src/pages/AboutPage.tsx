@@ -10,7 +10,7 @@ const futureFeature = [
 
 const AboutPage = () => {
   return (
-    <div className="wrapper max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-base sm:text-lg lg:text-xl text-zinc-800">
+    <div className="wrapper max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:py-12 text-base sm:text-lg lg:text-xl text-zinc-800">
       <PointerTitle
         title="About SnapScetch"
         className="mb-6"

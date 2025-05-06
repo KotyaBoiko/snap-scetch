@@ -4,5 +4,5 @@ export const enum COMMON_ROUTES_NAMES {
   Category = '/training/:categoryName',
   Profile = '/profile',
   About = '/about',
-  Contacts = '/Contacts',
+  Contacts = '/contacts',
 }

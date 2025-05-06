@@ -1,28 +1,21 @@
-import { COMMON_ROUTES_NAMES } from "@/app/router/commonRoutesNames";
 import { FC } from "react";
 import { Link, useLocation } from "react-router";
 
-const menu = [
-  { name: "Home", path: COMMON_ROUTES_NAMES.Home },
-  { name: "Training", path: COMMON_ROUTES_NAMES.Training },
-  { name: "About", path: COMMON_ROUTES_NAMES.About },
-  { name: "Contacts", path: COMMON_ROUTES_NAMES.Contacts },
-];
-
 type Props = {
   isDarkBg?: boolean;
+  data: { name: string; to: string }[];
+  className?: string;
 };
 
-const Navigation: FC<Props> = ({ isDarkBg }) => {
+const Navigation: FC<Props> = ({ isDarkBg, data, className = ''}) => {
   const location = useLocation();
-
   return (
-    <nav className="flex justify-end gap-8 items-center font-semibold">
-      {menu.map((item) => {
+    <nav className={"flex justify-end gap-3 xs:gap-5 md:gap-8 items-center font-semibold " + className}>
+      {data.map((item) => {
         return (
           <Link
             key={item.name}
-            to={item.path}
+            to={item.to}
             className={
               (isDarkBg ? "link-light link" : "link") +
               (location.pathname == `/${item.name.toLowerCase()}`

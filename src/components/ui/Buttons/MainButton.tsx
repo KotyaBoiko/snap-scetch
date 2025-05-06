@@ -16,7 +16,7 @@ const MainButton: FC<Props> = ({ content, to, action, className = '' }) => {
   ) : (
     <Link
       to={to}
-      className="rounded-4xl py-3 px-5 bg-main-red text-white hover:bg-darker-red cursor-pointer transition-colors"
+      className={"rounded-4xl py-3 px-5 bg-main-red text-white hover:bg-darker-red cursor-pointer transition-colors " + className}
     >
       {content}
     </Link>

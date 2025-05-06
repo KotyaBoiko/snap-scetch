@@ -1,4 +1,4 @@
-import img from '@/app/assets/images/europeana-84R6ipsqaxo-unsplash.jpg'
+import img from '@/app/assets/images/home.jpg'
 
 const ForWhom = () => {
   return (
