@@ -10,4 +10,8 @@ export default defineConfig({
     alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
   },
   base: '/snap-scetch/',
+  server: {
+    host: 'localhost',
+    port: 7800,
+  }
 });
