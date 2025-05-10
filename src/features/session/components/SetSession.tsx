@@ -1,5 +1,5 @@
 import MainButton from "@/components/ui/Buttons/MainButton";
-import { FC, use, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useImages } from "../hooks/useImages";
 
 type Props = {

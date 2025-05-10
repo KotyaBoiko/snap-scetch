@@ -3,13 +3,13 @@ import ContactsPage from "@/pages/ContactsPage";
 import FiltersPage from "@/pages/FiltersPage";
 import HomePage from "@/pages/HomePage";
 import TrainingPage from "@/pages/TrainingPage";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { HashRouter, Route, Routes } from "react-router";
 import Layout from "../layout";
 import { COMMON_ROUTES_NAMES } from "./commonRoutesNames";
 
 const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path={COMMON_ROUTES_NAMES.Home} element={<HomePage />} />
@@ -21,11 +21,14 @@ const AppRouter = () => {
             path={COMMON_ROUTES_NAMES.Category}
             element={<FiltersPage />}
           />
-          <Route path={COMMON_ROUTES_NAMES.Contacts} element={<ContactsPage />} />
+          <Route
+            path={COMMON_ROUTES_NAMES.Contacts}
+            element={<ContactsPage />}
+          />
           <Route path={COMMON_ROUTES_NAMES.About} element={<AboutPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
