@@ -1,5 +1,5 @@
 import MainButton from "@/components/ui/Buttons/MainButton";
-import { FC, useEffect, useState } from "react";
+import { FC, use, useEffect, useState } from "react";
 import { useImages } from "../hooks/useImages";
 
 type Props = {
@@ -9,19 +9,39 @@ type Props = {
 const SetSession: FC<Props> = ({ setIsSessionActive }) => {
   const { isLoading, data } = useImages();
   const [isActive, setIsActive] = useState(false);
-  const handleClick = async () => {
+
+  const handleClick = () => {
     setIsActive(true);
   };
 
+  const startSession = () => {
+    if (!isLoading) {
+      if(data.length < 1) {
+        setIsActive(false);
+        setIsSessionActive(false);
+      } else if (isActive) {
+        setIsSessionActive(true)
+      }
+    }
+  };
+
   useEffect(() => {
-    if (!isLoading && data.length < 1) {
-      setIsActive(false);
-      setIsSessionActive(false);
-    }
-    if (!isLoading && isActive && data.length > 0) {
-      setIsSessionActive(true);
-    }
-  }, [isLoading, isActive]);
+    startSession();
+  }, [isLoading, isActive, data]);
+
+  useEffect(() => {
+    const startSessionOnKey = (e: KeyboardEvent) => {
+      e.preventDefault()
+      if (e.code === "Enter") {
+        setIsActive(true);
+      }
+    };
+    document.addEventListener("keydown", startSessionOnKey);
+
+    return () => {
+      document.removeEventListener("keydown", startSessionOnKey);
+    };
+  }, []);
 
   return (
     <>

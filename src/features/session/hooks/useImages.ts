@@ -1,6 +1,6 @@
 import { useCategoryFilterStore } from "@/features/session/store/categoryFiltersStore";
 import { useQuery } from "@tanstack/react-query";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { sessionApi } from "../API";
 
 export const useImages = () => {
