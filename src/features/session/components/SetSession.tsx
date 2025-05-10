@@ -21,6 +21,16 @@ const SetSession: FC<Props> = ({ setIsSessionActive }) => {
         setIsSessionActive(false);
       } else if (isActive) {
         setIsSessionActive(true)
+        setTimeout(() => {
+          const elem = document.getElementById('draw-session')
+          if (!elem) {
+            console.log('Elem not find')
+            return
+          }
+          elem.requestFullscreen().catch((err) => {
+            console.log(err)
+          })
+        }, 0)
       }
     }
   };
@@ -31,8 +41,8 @@ const SetSession: FC<Props> = ({ setIsSessionActive }) => {
 
   useEffect(() => {
     const startSessionOnKey = (e: KeyboardEvent) => {
-      e.preventDefault()
       if (e.code === "Enter") {
+        e.preventDefault()
         setIsActive(true);
       }
     };
