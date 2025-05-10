@@ -32,7 +32,7 @@ const SelectTimeInterval = () => {
   });
   const [type, setType] = useState(typeExternal);
   const [time, setTime] = useState(
-    typeExternal === 0 ? timerInterval / 1000 / 60 : timerInterval / 1000
+    selectInterval != 5 ? timeIntervals[5].value / 1000 / 60 : typeExternal === 0 ? timerInterval / 1000 / 60 : timerInterval / 1000
   );
   const [invalidTime, setInvalidTime] = useState(false);
 
@@ -60,7 +60,7 @@ const SelectTimeInterval = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         {timeIntervals.map((item, index) => (
           <SimpleRadioInput
             key={index}
@@ -75,7 +75,7 @@ const SelectTimeInterval = () => {
       </div>
       {selectInterval === 5 && (
         <>
-          <div className="flex gap-3 items-center mt-4">
+          <div className="flex flex-col-reverse sm:flex-row gap-3 items-center mt-4">
             <SimpleInput
               autofocus={true}
               type="number"
@@ -83,6 +83,7 @@ const SelectTimeInterval = () => {
               onChange={(e) => {
                 setTime(parseInt(e.target.value));
               }}
+              className="w-full sm:w-auto"
             />
             <SimpleSelect
               data={types}

@@ -72,8 +72,8 @@ const Banner = () => {
         onMouseLeave={handleMouseLeave}
       >
         <div className="relative z-10 text-center flex items-center flex-col">
-          <h1 className="text-8xl w-7xl">INSPIRE THE HAND SHARPEN EYE</h1>
-          <p className="w-[450px]">
+          <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl max-w-7xl">INSPIRE THE HAND SHARPEN EYE</h1>
+          <p className="max-w-[450px]">
             Choose a category, set a timer, and draw from real-time prompts — on
             paper, your way. No distractions, just practice.
           </p>

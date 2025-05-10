@@ -24,8 +24,8 @@ const cardsInfo = [
 
 const WhyUs = () => {
   return (
-    <div className="flex items-center p-20 h-[100vh] bg-main-beige">
-      <div className="flex justify-between gap-8 w-full h-max">
+    <div className="flex items-center p-5 xl:p-20 py-10 bg-main-beige">
+      <div className="flex flex-col lg:flex-row justify-between gap-8 w-full h-max">
         {cardsInfo.map(({ title, info, Icon }) => (
           <div className="border-b-2 pb-2 w-full" key={title}>
             <TitleInfoCard title={title} info={info} Icon={Icon} />

@@ -44,7 +44,7 @@ const SimpleSelect: FC<Props> = ({
 
   return (
     <div
-      className={"cursor-pointer relative z-100 w-fit " + className}
+      className={"cursor-pointer relative z-100 w-full sm:w-fit " + className}
       ref={dropdownRef}
     >
       <div className="relative">
@@ -54,7 +54,7 @@ const SimpleSelect: FC<Props> = ({
           onClick={() => {
             setIsOpenList((p) => !p);
           }}
-          className="pr-7 cursor-pointer"
+          className="pr-7 cursor-pointer w-full"
         />
         <ArrowIcon
           onClick={() => {

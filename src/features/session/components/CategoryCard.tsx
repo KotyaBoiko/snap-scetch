@@ -19,7 +19,7 @@ const CategoryCard: FC<Props> = ({ category }) => {
     >
       <BgImgCard
         title={category.name}
-        info={category.description.slice(0, 20) + "..."}
+        info={category.description}
         img={category.img}
       />
     </Link>

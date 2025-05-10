@@ -13,7 +13,6 @@ type Props = {
 const DrawSession: FC<Props> = ({ setIsActive }) => {
   const { data, nextImage, prevImage, activeImage } =
     useImages();
-
   const isRunning = useTimerStore((state) => state.isRunning);
   const setIsRunning = useTimerStore((state) => state.setIsRunning);
   const reset = useTimerStore(state => state.reset)
@@ -35,7 +34,7 @@ const DrawSession: FC<Props> = ({ setIsActive }) => {
           src={data[activeImage].url}
           key={data[activeImage].id}
           alt={data[activeImage].url}
-          className="h-full w-auto mx-auto"
+          className="h-full w-auto object-contain mx-auto"
         />
       </div>
       <CrossIcon

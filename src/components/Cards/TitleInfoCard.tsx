@@ -8,10 +8,10 @@ type Props = {
 
 const TitleInfoCard: FC<Props> = ({ title, info, Icon }) => {
   return (
-    <div className="flex flex-col gap-3 w-96 h-full">
-      {Icon ? <Icon  className="w-15 h-15"/> : null}
+    <div className="flex flex-col gap-3 w-full max-w-[350px] h-full break-words">
+      {Icon ? <Icon  className="w-15 h-15 fill-main-gray"/> : null}
       <h5 className="font-bold text-2xl ">{title}</h5>
-      <p className="text-xl mb-auto">{info}</p>
+      <p className="text-xl text-wrap mb-auto">{info}</p>
     </div>
   );
 };

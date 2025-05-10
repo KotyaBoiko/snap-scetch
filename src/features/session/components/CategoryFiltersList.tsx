@@ -114,7 +114,7 @@ const CategoryFiltersList = () => {
         return (
           <div key={filter.name}>
             <h2 className="text-2xl">{filter.name}</h2>
-            <div className="flex gap-4">
+            <div className="flex gap-x-2 md:gap-x-4 gap-y-1 flex-wrap">
               <SelectButton
                 onClick={() => handleClearFilter(filter.name)}
                 active={!filters.find((f) => f.name === filter.name)}
