@@ -1,11 +1,11 @@
 import { useCategoryFilterStore } from "@/features/session/store/categoryFiltersStore";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { sessionApi } from "../API";
 
 export const useImages = () => {
   const filters = useCategoryFilterStore((state) => state.filters);
-  const category = useCategoryFilterStore(state => state.category);
+  const category = useCategoryFilterStore((state) => state.category);
   const [activeImage, setActiveImage] = useState(0);
   const { data, isLoading, isSuccess } = useQuery({
     queryKey: ["images", filters, category],
@@ -13,15 +13,29 @@ export const useImages = () => {
   });
 
   const nextImage = () => {
-    if (isSuccess && activeImage < data.length - 1) {
-      setActiveImage((prev) => prev + 1);
-    }
-  };
-  const prevImage = () => {
-    if (isSuccess && activeImage > 0) {
-      setActiveImage((prev) => prev - 1);
-    }
+    setActiveImage((prev) => {
+      if (isSuccess && prev < data.length - 1) {
+        return prev + 1;
+      }
+      return prev;
+    });
   };
 
-  return { data: data ?? [], isLoading, isSuccess, nextImage, prevImage, activeImage };
+  const prevImage = () => {
+    setActiveImage((prev) => {
+      if (isSuccess && prev > 0) {
+        return prev - 1;
+      }
+      return prev;
+    });
+  };
+
+  return {
+    data: data ?? [],
+    isLoading,
+    isSuccess,
+    nextImage,
+    prevImage,
+    activeImage,
+  };
 };

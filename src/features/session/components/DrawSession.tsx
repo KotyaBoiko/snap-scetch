@@ -3,26 +3,55 @@ import ArrowNextPrev from "@/components/ui/ArrowNextPrev";
 import Pause from "@/components/ui/Pause";
 import TimerWidget from "@/features/timer/components/TimerWidget";
 import { useTimerStore } from "@/features/timer/store/timerStore";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useImages } from "../hooks/useImages";
 import ResetIcon from "@/app/assets/icons/reset.svg?react";
+import { sessionControlKey } from "../constants/sessionControlKey";
 type Props = {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const DrawSession: FC<Props> = ({ setIsActive }) => {
-  const { data, nextImage, prevImage, activeImage } =
-    useImages();
+  const { data, nextImage, prevImage, activeImage } = useImages();
   const isRunning = useTimerStore((state) => state.isRunning);
   const setIsRunning = useTimerStore((state) => state.setIsRunning);
-  const reset = useTimerStore(state => state.reset)
+  const reset = useTimerStore((state) => state.reset);
 
   const [isShowMenu, setIsShowMenu] = useState(true);
 
   const handleSwitchImage = (switcher: () => void) => {
-    reset()
-    switcher()
-  } 
+    reset();
+    switcher();
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.code) {
+        case sessionControlKey.next:
+          handleSwitchImage(nextImage);
+          break;
+        case sessionControlKey.prev:
+          handleSwitchImage(prevImage);
+          break;
+        case sessionControlKey.togglePause:
+          setIsRunning((p) => !p);
+          break;
+        case sessionControlKey.reset:
+          reset();
+          break;
+        case sessionControlKey.exit: {
+          setIsActive(false);
+          break;
+        }
+        default:
+          break;
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <div
@@ -59,7 +88,10 @@ const DrawSession: FC<Props> = ({ setIsActive }) => {
           onClick={() => handleSwitchImage(nextImage)}
           className={activeImage === data.length - 1 ? "opacity-70" : ""}
         />
-        <ResetIcon className="fill-main-beige h-10 w-10 cursor-pointer hover:opacity-70 transition-opacity" onClick={reset}/>
+        <ResetIcon
+          className="fill-main-beige h-10 w-10 cursor-pointer hover:opacity-70 transition-opacity"
+          onClick={reset}
+        />
       </div>
       <TimerWidget />
     </div>

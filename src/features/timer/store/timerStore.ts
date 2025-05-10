@@ -6,7 +6,7 @@ interface ITimeStore {
   time: number;
   setTime: (time: number | ((time: number) => number)) => void;
   isRunning: boolean;
-  setIsRunning: (isRunning: boolean) => void;
+  setIsRunning: (action: boolean | ((action: boolean) => boolean)) => void;
   reset: () => void;
 }
 
@@ -21,11 +21,15 @@ export const useTimerStore = create<ITimeStore>((set) => ({
   isRunning: true,
   setIsRunning: (action) =>
     set((state) => {
-      if (state.time === 0 && !state.isRunning && action) {
-        state.reset();
-        return { isRunning: true };
+      if (typeof action === 'function') {
+        return  { isRunning: action(state.isRunning)}
+      } else {
+        if (state.time === 0 && !state.isRunning && action) {
+          state.reset();
+          return { isRunning: true };
+        }
+        return { isRunning: action };
       }
-      return { isRunning: action };
     }),
   reset: () => set((state) => ({ time: state.timerInterval, isRunning: true })),
 }));
